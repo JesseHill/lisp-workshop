@@ -11,9 +11,13 @@ public class Lispy {
 		if (ast instanceof LispSymbol) {
 			return environment.get((LispSymbol) ast);
 		}
-		if (!(ast instanceof LispList)) throw new IllegalArgumentException();
+		if (!(ast instanceof LispList)) return ast;
 		LispList form = (LispList) ast;
 		LispFunction function = (LispFunction) environment.get((LispSymbol) form.first());
+//		LispList args = new LispList();
+//		for (LispType next : form.rest().values) {
+//			args.append(evaluate(environment, next));
+//		}
 		return function.execute(form.rest());
 	}	
 }

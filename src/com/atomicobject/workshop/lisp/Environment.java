@@ -30,7 +30,7 @@ public class Environment {
 	public LispType get(LispSymbol key) throws Throwable {
 		Environment e = find(key);
 		if (e == null) {
-			throw new Exception("'" + key.getValue() + "' not found");
+			throw new Exception("Undefined symbol: '" + key.getValue() + "' not found");
 		} else {
 			return e.data.get(key.getValue());
 		}

@@ -1,6 +1,6 @@
 package com.atomicobject.workshop.lisp;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -21,10 +21,11 @@ public class Test5_Equality {
 			ast.append(new LispInteger(5));
 			ast.append(new LispInteger(6));
 			output = new Lispy().evaluate(environment, ast);
+			assertEquals("false", output.toString());
 		} catch (Throwable e) {
 			e.printStackTrace();
+			fail("Unexpected exception: " + e.getMessage());
 		}
-		assertEquals("false", output.toString());
 	}
 
 	@Test
@@ -37,9 +38,10 @@ public class Test5_Equality {
 			ast.append(new LispInteger(5));
 			ast.append(new LispInteger(5));
 			output = new Lispy().evaluate(environment, ast);
+			assertEquals("true", output.toString());
 		} catch (Throwable e) {
 			e.printStackTrace();
+			fail("Unexpected exception: " + e.getMessage());
 		}
-		assertEquals("true", output.toString());
 	}	
 }
