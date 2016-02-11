@@ -14,7 +14,7 @@ public class Test2_Reader {
 	Reader reader = new Reader(new Tokenizer());
 
 	@Test
-	public void tokenize_should_return_expected_results() {
+	public void reader_should_return_expected_results() {
 		LispType output = null;
 		
 		try {

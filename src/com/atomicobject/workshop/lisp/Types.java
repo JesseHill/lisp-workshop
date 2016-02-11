@@ -1,17 +1,23 @@
 package com.atomicobject.workshop.lisp;
 
+import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class Types {
 
-	public static class LispType {
+	public abstract static class LispType {
 	}
 
 	public static abstract class LispTypeReader {
 		public abstract boolean matches(TokenReader reader);
 		public abstract LispType read(TokenReader reader);
 	}	
+	
+	public static abstract class LispFunction extends LispType {
+		public abstract LispType execute(LispList args);
+	}
 	
 	public static class LispSymbol extends LispType {
 		String value;
@@ -21,6 +27,11 @@ public class Types {
 		}
 		
 		public String getValue() {
+			return value;
+		}
+
+		@Override
+		public String toString() {
 			return value;
 		}
 
@@ -49,7 +60,7 @@ public class Types {
 			this.value = value;
 		}
 		
-		public int getValue() {
+		public Integer getValue() {
 			return value;
 		}
 		
@@ -57,6 +68,11 @@ public class Types {
 		public boolean equals(Object obj) {
 			return LispInteger.class.equals(obj.getClass()) && this.value == ((LispInteger) obj).getValue();
 		}
+
+		@Override
+		public String toString() {
+			return Integer.toString(value);
+		}		
 	}
 
 	public static class LispIntegerReader extends LispTypeReader {
@@ -72,7 +88,23 @@ public class Types {
 	}
 
 	public static class LispList extends LispType {
-		ArrayList<LispType> values = new ArrayList<LispType>();
+		List<LispType> values;
+		
+		public LispList() {
+			values = new ArrayList<LispType>();
+		}
+
+		public LispList(List<LispType> values) {
+			this.values = values;
+		}
+
+		public LispType first() {
+			return values.get(0);
+		}
+		
+		public LispList rest() {
+			return new LispList(values.subList(1, size()));
+		}
 		
 		public int size() {
 			return values.size();
@@ -99,6 +131,18 @@ public class Types {
 				if (!get(i).equals(other.get(i))) return false;
 			}
 			return true;
-		}		
+		}
+
+		@Override
+		public String toString() {
+			StringWriter writer = new StringWriter();
+			writer.append("(");
+			for (int i = 0; i < size(); i++) {
+				writer.append(get(i).toString());
+				if (i < (size() - 1)) writer.append(" ");
+			}
+			writer.append(")");
+			return writer.toString();
+		}
 	}
 }
