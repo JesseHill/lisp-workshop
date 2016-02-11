@@ -8,18 +8,20 @@ public class REPL {
 
 	Environment environment;
 	Reader reader;
+	Lispy lispy;
 	
 	public REPL() {
-		environment = new Environment();
+		environment = new CoreEnvironment();
 		reader = new Reader(new Tokenizer());
+		lispy = new Lispy();
 	}
 	
 	public LispType read(String str) throws Throwable {
         return reader.read(str);
     }
 
-    public LispType eval(Environment env, LispType ast) {
-        return ast;
+    public LispType eval(Environment env, LispType ast) throws Throwable {
+        return lispy.evaluate(environment, ast);
     }
 
     public String print(LispType exp) {

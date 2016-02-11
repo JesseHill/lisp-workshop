@@ -24,7 +24,6 @@ public class Reader {
 	
 	public Reader(Tokenizer t) {
 		this.tokenizer = t;
-		
 		atomReaders.add(new LispIntegerReader());
 		atomReaders.add(new LispSymbolReader());
 	}
