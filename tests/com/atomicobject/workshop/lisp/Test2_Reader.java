@@ -15,13 +15,7 @@ public class Test2_Reader {
 
 	@Test
 	public void reader_should_return_expected_results() {
-		LispType output = null;
-		
-		try {
-			output = reader.read("(do (def val 10) (* val val))");
-		} catch (Throwable t) {
-			t.printStackTrace();
-		}
+		LispType output = reader.read("(do (def val 10) (* val val))");
 		
 		LispList expression1 = new LispList();
 		expression1.append(new LispSymbol("def"));

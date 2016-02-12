@@ -27,10 +27,10 @@ public class Environment {
 		}
 	}
 
-	public LispType get(LispSymbol key) throws Throwable {
+	public LispType get(LispSymbol key) throws RuntimeException {
 		Environment e = find(key);
 		if (e == null) {
-			throw new Exception("Undefined symbol: '" + key.getValue() + "' not found");
+			throw new RuntimeException("Undefined symbol: '" + key.getValue() + "' not found");
 		} else {
 			return e.data.get(key.getValue());
 		}

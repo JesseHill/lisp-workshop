@@ -19,6 +19,39 @@ public class Types {
 		public abstract LispType execute(LispList args);
 	}
 	
+	public static class LispBoolean extends LispType {
+		boolean value;
+		
+		public LispBoolean(boolean value) {
+			this.value = value;
+		}
+		
+		public boolean getValue() {
+			return value;
+		}
+		
+		@Override
+		public String toString() {
+			return value ? "true" : "false";
+		}
+		
+		public boolean equals(Object obj) {
+			return LispBoolean.class.equals(obj.getClass()) && this.value == (((LispBoolean) obj).getValue());
+		}
+	}
+	
+	public static class LispBooleanReader extends LispTypeReader {
+		Pattern pattern = Pattern.compile("(^true|false$)");
+		
+		public boolean matches(TokenReader reader) {
+			return pattern.matcher(reader.peek()).find();
+		}
+		
+		public LispType read(TokenReader reader) {
+			return new LispBoolean(Boolean.parseBoolean(reader.next()));
+		}
+	}		
+	
 	public static class LispSymbol extends LispType {
 		String value;
 

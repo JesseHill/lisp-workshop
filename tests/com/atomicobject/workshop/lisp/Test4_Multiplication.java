@@ -34,23 +34,13 @@ public class Test4_Multiplication {
 	
 	@Test
 	public void functions_should_execute() {
-		try {
-			LispType output = new Lispy().evaluate(getEnvironment(), reader.read("(* 5 6)"));
-			assertEquals("30", output.toString());
-		} catch (Throwable e) {
-			e.printStackTrace();
-			fail();
-		}
+		LispType output = new Lispy().evaluate(getEnvironment(), reader.read("(* 5 6)"));
+		assertEquals("30", output.toString());
 	}
 
 	@Test
 	public void functions_should_evaulate_args_before_executing() {
-		try {
-			LispType output = new Lispy().evaluate(getEnvironment(), reader.read("(* 5 (* 4 5))"));
-			assertEquals("100", output.toString());
-		} catch (Throwable e) {
-			e.printStackTrace();
-			fail();
-		}
+		LispType output = new Lispy().evaluate(getEnvironment(), reader.read("(* 5 (* 4 5))"));
+		assertEquals("100", output.toString());
 	}	
 }

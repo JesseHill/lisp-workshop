@@ -2,6 +2,7 @@ package com.atomicobject.workshop.lisp;
 
 import java.util.ArrayList;
 
+import com.atomicobject.workshop.lisp.Types.LispBooleanReader;
 import com.atomicobject.workshop.lisp.Types.LispIntegerReader;
 import com.atomicobject.workshop.lisp.Types.LispList;
 import com.atomicobject.workshop.lisp.Types.LispSymbolReader;
@@ -13,7 +14,7 @@ public class Reader {
 	Tokenizer tokenizer;
 	ArrayList<LispTypeReader> atomReaders = new ArrayList<LispTypeReader>();
 	
-    public static class ParseError extends Throwable {
+    public static class ParseError extends RuntimeException {
     	
     	private static final long serialVersionUID = -5361526651871942263L;
     	
@@ -25,6 +26,7 @@ public class Reader {
 	public Reader(Tokenizer t) {
 		this.tokenizer = t;
 		atomReaders.add(new LispIntegerReader());
+		atomReaders.add(new LispBooleanReader());
 		atomReaders.add(new LispSymbolReader());
 	}
 	

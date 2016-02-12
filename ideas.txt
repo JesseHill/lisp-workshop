@@ -1,30 +1,5 @@
 Here's a list of some ideas for things you could add to your language:
 
-- Add support for an if statement.
-  (if (= 1 1)
-    "Yep"
-    "Nope") 
-
-- Add support for < and >
-  (if (< 1 2)
-    "Yep"
-    "Nope")
-
-  (if (> 1 2)
-    "Yep"
-    "Nope")
-
-- Add support for defining values
-  (def name "Bernie")
-  (if (= name "Bernie")
-    "Yep"
-    "Nope")
-
-- Add support for running multiple statements
-  (do
-    (thing1)
-    (thing2))
-
 - Add support for local variables
   (let [x 1
         y 2]

@@ -13,12 +13,7 @@ public class Test3_Environment {
 	public void symbols_should_resolve_as_expected() {
 		Environment environment = new Environment();
 		environment.set("hi", "Hello");
-		LispType output = null;
-		try {
-			output = new Lispy().evaluate(environment, new LispSymbol("hi"));
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
+		LispType output = new Lispy().evaluate(environment, new LispSymbol("hi"));
 		assertEquals("Hello", output.toString());
 	}
 

@@ -7,7 +7,7 @@ import com.atomicobject.workshop.lisp.Types.LispType;
 
 public class Lispy {
 
-	public LispType evaluate(Environment environment, LispType ast) throws Throwable {
+	public LispType evaluate(Environment environment, LispType ast) throws RuntimeException {
 		if (ast instanceof LispSymbol) {
 			return environment.get((LispSymbol) ast);
 		}
